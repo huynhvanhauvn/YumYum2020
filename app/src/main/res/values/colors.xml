@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#FFCB00</color>
+    <color name="colorPrimaryDark">#FF8800</color>
+    <color name="colorAccent">#F44336</color>
+    <color name="colorCircle">@color/colorPrimary</color>
+    <color name="colorClickableText">#DDCA02</color>
+    <color name="colorPending">@color/colorPrimary</color>
+    <color name="colorCancel">@color/colorAccent</color>
+    <color name="colorSuccess">#59B600</color>
+    <color name="colorBottomSheet">#C8FFFFFF</color>
+    <color name="colorDisable">#CFCFCF</color>
+
 </resources>

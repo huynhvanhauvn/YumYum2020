@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">YumYum</string>
+    <string name="map_api_key" translatable="false">AIzaSyAwvDy8VQ1ixW6bScMJ5Yr_m2kF4rRbbNA</string>
+    <string name="main_search_hint">Search...</string>
+    <string name="createRes_addloca">Add Location of the Restaurant</string>
+    <string name="title_activity_select_loca">Map</string>
+    <string name="select_empty">You should select a location to continue.</string>
+    <string name="empty">Empty</string>
+    <string name="res_hint_name_disk">Type dish</string>
+    <string name="res_hint_price_disk">Type price</string>
+    <string name="res_error">You must input all info of Disk</string>
+    <string name="main_bts_order">Order</string>
+    <string name="all_search_alert_not_found">Sorry! Not found.</string>
+    <string name="list_order_have">Have</string>
+    <string name="list_order_dish">dish</string>
+    <string name="list_order_dishes">dishes</string>
+    <string name="all_order_status_pending">pending</string>
+    <string name="all_order_status_cancel">canceled</string>
+    <string name="all_order_status_success">successful</string>
+    <string name="od_date">Date:</string>
+    <string name="od_quantity">Total quantity:</string>
+    <string name="od_price">Total price:</string>
+    <string name="od_ship_fee">Shpping fee:</string>
+    <string name="all_ship_at">Ship from: </string>
+    <string name="main_logout">Log out</string>
+    <string name="main_alert_quit">Do you wanna quit app?</string>
+    <string name="all_yes">Yes</string>
+    <string name="all_no">No</string>
+    <string name="od_to">To: </string>
+    <string name="od_cancel">Cancel Order</string>
+    <string name="od_confirm">Confirm Order</string>
+    <string name="rating_thanks">Thank You for Your Rating</string>
+    <string name="rating_already">Thank You! You have already rated this restaurant</string>
 </resources>
