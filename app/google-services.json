@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "14813440945",
+    "firebase_url": "https://yumyum-255510.firebaseio.com",
+    "project_id": "yumyum-255510",
+    "storage_bucket": "yumyum-255510.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14813440945:android:7747afe5714320cfe56b90",
+        "android_client_info": {
+          "package_name": "com.sbro.yumyum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14813440945-88s7q6qr3vvaf9aci4pnhrkp3nfiuedk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0aiz7yyYdXlV1VSNmY47DgdK-cOWl1a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14813440945-88s7q6qr3vvaf9aci4pnhrkp3nfiuedk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
