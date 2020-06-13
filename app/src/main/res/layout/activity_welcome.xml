@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.WelcomeActivity">
+    tools:context=".WelcomeActivity">
+
     <RelativeLayout
         android:id="@+id/layoutLogo"
         android:layout_centerInParent="true"
@@ -18,4 +19,5 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/icon" />
     </RelativeLayout>
+
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.sbro.yumyum.Utils
+package com.sbro.yumyum.Models
 
 import com.google.android.gms.maps.model.Marker
 import com.sbro.yumyum.Models.Restaurant
