@@ -16,7 +16,7 @@ import java.util.*
 
 class OrderAdapter(
     private val context: Context,
-    private val orders: ArrayList<Order>
+    private val orders: ArrayList<Order?>?
 ) :
     RecyclerView.Adapter<OrderAdapter.RecyclerViewHolder>() {
     private var listener: OnItemClickListener? = null
@@ -33,8 +33,8 @@ class OrderAdapter(
         holder: RecyclerViewHolder,
         position: Int
     ) {
-        val order = orders[position]
-        holder.txtId.text = order.id
+        val order = orders?.get(position)
+        holder.txtId.text = order!!.id
         val firestore = FirebaseFirestore.getInstance()
         firestore.collection("restaurants").whereEqualTo("idRes", order.idRes)
             .get().addOnCompleteListener { task ->
@@ -85,7 +85,7 @@ class OrderAdapter(
     }
 
     override fun getItemCount(): Int {
-        return orders.size
+        return orders!!.size
     }
 
     inner class RecyclerViewHolder(itemView: View) :

@@ -1,4 +1,4 @@
-package com.sbro.yumyum
+package com.sbro.yumyum.Activities
 
 import android.app.Activity
 import android.content.Intent
@@ -17,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sbro.yumyum.Activities.RestaurantActivity
 import com.sbro.yumyum.Fragments.SelectedLocationFragment
+import com.sbro.yumyum.R
 import java.io.IOException
 import java.util.*
 

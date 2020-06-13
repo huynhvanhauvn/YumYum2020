@@ -40,14 +40,13 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.sbro.yumyum.Activities.LoginActivity
-import com.sbro.yumyum.Activities.OrderActivity
-import com.sbro.yumyum.Activities.RestaurantActivity
 import com.sbro.yumyum.Adapters.MainMenuAdapter
 import com.sbro.yumyum.Adapters.SearchAdapter
+import com.sbro.yumyum.Activities.CreateResActivity
 import com.sbro.yumyum.Models.*
 import com.sbro.yumyum.R
-import com.sbro.yumyum.Utils.MyMarker
+import com.sbro.yumyum.Models.MyMarker
+import com.sbro.yumyum.Activities.OrderActivity
 import java.io.IOException
 import java.text.DecimalFormat
 import java.util.*
@@ -186,7 +185,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         })
 
         //get all list of restaurants
-        restaurant
+        getRestaurant()
         val firestore = FirebaseFirestore.getInstance()
         firestore.collection("restaurants").whereEqualTo("idUser", user!!.uid)
             .addSnapshotListener { queryDocumentSnapshots, e ->
@@ -327,23 +326,24 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private val restaurant: Unit
-        private get() {
-            val firestore = FirebaseFirestore.getInstance()
-            firestore.collection("restaurants").get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (snapshot in task.result!!) {
-                            val restaurant =
-                                snapshot.toObject(Restaurant::class.java)
-                            restaurant.id = snapshot.id
-                            val myMarker = MyMarker(restaurant)
-                            markers!!.add(myMarker)
-                        }
-                        mapFragment!!.getMapAsync(this@MainActivity)
+
+    private fun getRestaurant() {
+        val firestore = FirebaseFirestore.getInstance()
+        var addOnCompleteListener = firestore.collection("restaurants").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (snapshot in task.result!!) {
+                        val restaurant =
+                            snapshot.toObject(Restaurant::class.java)
+                        restaurant.id = snapshot.id
+                        val myMarker =
+                            MyMarker(restaurant)
+                        markers!!.add(myMarker)
                     }
+                    mapFragment!!.getMapAsync(this@MainActivity)
                 }
-        }
+            }
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
@@ -423,7 +423,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                                     ratingBar!!.isEnabled = false
                                     layoutRating!!.setOnClickListener {
                                         firestore!!.collection("ratings")
-                                            .whereEqualTo("idUser", user!!.uid).get()
+                                            .whereEqualTo("idUser", user!!.uid).whereEqualTo("idRes", selectedRestaurant!!.id).get()
                                             .addOnCompleteListener { task ->
                                                 if (task.result!!.isEmpty) {
                                                     val intent = Intent(

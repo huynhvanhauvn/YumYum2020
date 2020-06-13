@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.OrderActivity"
+    tools:context=".OrderActivity"
     android:background="@color/colorPrimary">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,4 +14,5 @@
         android:layout_height="match_parent"
 
         android:layout_marginTop="5dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

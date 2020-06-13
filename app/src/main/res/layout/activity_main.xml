@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
+    tools:context=".MainActivity">
+
     <fragment
         android:id="@+id/main_fragment_map"
 
@@ -46,7 +47,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include layout="@layout/main_bottom_sheet" />
+    <include layout="@layout/main_bottom_sheet"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +63,6 @@
         android:background="@drawable/bg_cart"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="50dp">
-
         <androidx.cardview.widget.CardView
             android:id="@+id/main_cart_quantity_order"
 

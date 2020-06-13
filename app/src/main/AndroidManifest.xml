@@ -14,13 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.OrderActivity"></activity>
-        <activity android:name=".Activities.RestaurantActivity" />
-        <activity android:name=".Activities.CreateResActivity" />
+        <activity android:name=".Activities.OrderDetailActivity" android:parentActivityName=".Activities.OrderActivity"></activity>
+        <activity android:name=".Activities.OrderActivity" android:parentActivityName=".Activities.MainActivity"/>
+        <activity android:name=".Activities.RestaurantActivity" android:parentActivityName=".Activities.MainActivity"/>
         <activity android:name=".Activities.RatingActivity" />
         <activity android:name=".Activities.VerifyActivity" />
         <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.MainActivity"/>
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.CreateResActivity"  android:parentActivityName=".Activities.MainActivity"/>
         <activity android:name=".Activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ package com.sbro.yumyum.Activities
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.RatingBar.OnRatingBarChangeListener
@@ -23,6 +24,7 @@ class RatingActivity : AppCompatActivity() {
     private var firestore: FirebaseFirestore? = null
     private var restaurant: Restaurant? = null
     private var mUser: FirebaseUser? = null
+    private var btnSend : ImageButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rating)
@@ -32,6 +34,27 @@ class RatingActivity : AppCompatActivity() {
         mUser = FirebaseAuth.getInstance().currentUser
         firestore = FirebaseFirestore.getInstance()
         img = findViewById<View>(R.id.rating_img) as ImageView
+        btnSend = findViewById<ImageButton>(R.id.rating_btn_send) as ImageButton
+        btnSend!!.setOnClickListener(){
+            if(ratingBar!!.rating > 0){
+                if (idRes != "") {
+                    val rating1 = Rating()
+                    rating1.idRes = idRes
+                    rating1.idUser = mUser!!.uid
+                    rating1.date = Calendar.getInstance().time
+                    rating1.value = ratingBar!!.rating
+                    firestore!!.collection("ratings").document().set(rating1)
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                applicationContext,
+                                resources.getString(R.string.rating_thanks),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            finish()
+                        }
+                }
+            }
+        }
         ratingBar = findViewById<View>(R.id.rating_bar) as RatingBar
         if (!intent.equals("")) {
             firestore!!.collection("restaurants").document(idRes).get()
@@ -46,21 +69,7 @@ class RatingActivity : AppCompatActivity() {
         }
         ratingBar!!.onRatingBarChangeListener =
             OnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                if (idRes != "") {
-                    val rating1 = Rating()
-                    rating1.idRes = idRes
-                    rating1.idUser = mUser!!.uid
-                    rating1.date = Calendar.getInstance().time
-                    rating1.value = rating
-                    firestore!!.collection("ratings").document().set(rating1)
-                        .addOnSuccessListener {
-                            Toast.makeText(
-                                applicationContext,
-                                resources.getString(R.string.rating_thanks),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                }
+
             }
     }
 }

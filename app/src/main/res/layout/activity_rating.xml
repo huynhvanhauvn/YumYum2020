@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RatingActivity">
+    tools:context=".RatingActivity">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/rating_cart"
 
@@ -36,4 +37,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         android:layout_marginTop="20dp"/>
+    <ImageButton
+        android:id="@+id/rating_btn_send"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
