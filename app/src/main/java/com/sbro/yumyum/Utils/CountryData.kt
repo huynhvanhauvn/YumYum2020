@@ -2,7 +2,7 @@ package com.sbro.yumyum.Utils
 
 object CountryData {
     val countryNames = arrayOf(
-        "Afghanistan", "Albania",
+        "Viet Nam", "Afghanistan", "Albania",
         "Algeria", "Andorra", "Angola", "Antarctica", "Argentina",
         "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan",
         "Bahrain", "Bangladesh", "Belarus", "Belgium", "Belize", "Benin",
@@ -44,11 +44,11 @@ object CountryData {
         "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
         "United Arab Emirates", "Uganda", "United Kingdom", "Ukraine",
         "Uruguay", "United States", "Uzbekistan", "Vanuatu",
-        "Holy See (vatican City State)", "Venezuela", "Viet Nam",
+        "Holy See (vatican City State)", "Venezuela",
         "Wallis And Futuna", "Yemen", "Zambia", "Zimbabwe"
     )
     val countryAreaCodes = arrayOf(
-        "93", "355", "213",
+        "84", "93", "355", "213",
         "376", "244", "672", "54", "374", "297", "61", "43", "994", "973",
         "880", "375", "32", "501", "229", "975", "591", "387", "267", "55",
         "673", "359", "226", "95", "257", "855", "237", "1", "238", "236",
@@ -69,6 +69,6 @@ object CountryData {
         "82", "34", "94", "290", "508", "249", "597", "268", "46", "41",
         "963", "886", "992", "255", "66", "228", "690", "676", "216", "90",
         "993", "688", "971", "256", "44", "380", "598", "1", "998", "678",
-        "39", "58", "84", "681", "967", "260", "263"
+        "39", "58", "681", "967", "260", "263"
     )
 }

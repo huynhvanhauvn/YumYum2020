@@ -48,7 +48,7 @@ class MenuAdapter(private val context: Context, private val dishes: ArrayList<Di
                     .update("available", isChecked)
             }
         } else {
-            holder.checkBox.isEnabled = false
+            //holder.checkBox.isEnabled = false
         }
     }
 

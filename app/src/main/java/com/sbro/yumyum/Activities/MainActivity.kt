@@ -187,9 +187,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         //get all list of restaurants
         getRestaurant()
         val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("restaurants").whereEqualTo("idUser", user!!.uid)
+        firestore.collection("restaurants").whereEqualTo("idUser", user?.uid)
             .addSnapshotListener { queryDocumentSnapshots, e ->
-                if (!queryDocumentSnapshots!!.isEmpty) {
+                if (queryDocumentSnapshots!= null && !queryDocumentSnapshots!!.isEmpty) {
                     for (snapshot in queryDocumentSnapshots) {
                         myRestaurant = snapshot.toObject(Restaurant::class.java)
                         myRestaurant!!.id = snapshot.id
@@ -307,8 +307,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     val random = Random()
                     val tail = random.nextInt(999999)
                     val id: String = date.time.toString() + tail
-                    firestore.collection("orders").document(id).set(order)
-                        .addOnSuccessListener { }.addOnFailureListener { }
+                    firestore?.collection("orders")?.document(id)?.set(order)
+                        ?.addOnSuccessListener { }?.addOnFailureListener { }
                 }
             }
         }
@@ -406,7 +406,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                                     firestore!!.collection("ratings")
                                         .whereEqualTo("idRes", selectedRestaurant!!.id)
                                         .addSnapshotListener { queryDocumentSnapshots, e ->
-                                            if (!queryDocumentSnapshots!!.isEmpty) {
+                                            if (queryDocumentSnapshots != null && !queryDocumentSnapshots!!.isEmpty) {
                                                 var ratingPoint = 0f
                                                 var n = 0
                                                 for (snapshot in queryDocumentSnapshots) {
