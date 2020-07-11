@@ -1,5 +1,4 @@
 package com.sbro.yumyum.Activities
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -56,13 +55,62 @@ class OrderActivity : AppCompatActivity() {
                                             snapshot.toObject(Restaurant::class.java)
                                         restaurant.id = snapshot.id
                                     }
+//                                    firestore!!.collection("orders")
+//                                        .whereEqualTo("idRes", restaurant.id).get()
+//                                        .addOnCompleteListener { task ->
+//                                            if (task.isSuccessful) {
+//                                                orders =
+//                                                    ArrayList()
+//                                                for (snapshot in task.result!!) {
+//                                                    val order =
+//                                                        snapshot.toObject(
+//                                                            Order::class.java
+//                                                        )
+//                                                    order.id = snapshot.id
+//                                                    orders!!.add(order)
+//                                                }
+//                                                Collections.sort(
+//                                                    orders,
+//                                                    object :
+//                                                        Comparator<Order?> {
+//                                                        override fun compare(
+//                                                            o1: Order?,
+//                                                            o2: Order?
+//                                                        ): Int {
+//                                                            return o2!!.date!!.compareTo(o1!!.date)
+//                                                        }
+//                                                    })
+//                                                adapter = OrderAdapter(
+//                                                    applicationContext,
+//                                                    orders
+//                                                )
+//                                                recyclerView!!.adapter = adapter
+//                                                adapter!!.setOnItemClickListener(object :
+//                                                    OrderAdapter.OnItemClickListener {
+//                                                    override fun OnItemClick(
+//                                                        view: View?,
+//                                                        position: Int
+//                                                    ) {
+//                                                        val intent1 = Intent(
+//                                                            this@OrderActivity,
+//                                                            OrderDetailActivity::class.java
+//                                                        )
+//                                                        intent1.putExtra(
+//                                                            "id",
+//                                                            orders!![position]!!.id
+//                                                        )
+//                                                        startActivity(intent1)
+//                                                    }
+//                                                })
+//                                            }
+//                                        }
                                     firestore!!.collection("orders")
-                                        .whereEqualTo("idRes", restaurant.id).get()
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
+                                        .whereEqualTo("idRes", restaurant.id)
+                                        .addSnapshotListener{queryDocumentSnapshots,e->
+                                            if (queryDocumentSnapshots != null && !queryDocumentSnapshots!!.isEmpty) {
                                                 orders =
                                                     ArrayList()
-                                                for (snapshot in task.result!!) {
+                                                for (snapshot in queryDocumentSnapshots) {
                                                     val order =
                                                         snapshot.toObject(
                                                             Order::class.java
@@ -108,13 +156,45 @@ class OrderActivity : AppCompatActivity() {
                                 }
                             }
                     } else {
-                        firestore!!.collection("orders").whereEqualTo("idUser", user!!.uid)
-                            .get()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
+//                        firestore!!.collection("orders").whereEqualTo("idUser", user!!.uid)
+//                            .get()
+//                            .addOnCompleteListener { task ->
+//                                if (task.isSuccessful) {
+//                                    orders =
+//                                        ArrayList()
+//                                    for (snapshot in task.result!!) {
+//                                        val order =
+//                                            snapshot.toObject(
+//                                                Order::class.java
+//                                            )
+//                                        order.id = snapshot.id
+//                                        orders!!.add(order)
+//                                    }
+//                                    adapter = OrderAdapter(applicationContext, orders)
+//                                    recyclerView!!.adapter = adapter
+//                                    adapter!!.setOnItemClickListener(object :
+//                                        OrderAdapter.OnItemClickListener {
+//                                        override fun OnItemClick(
+//                                            view: View?,
+//                                            position: Int
+//                                        ) {
+//                                            val intent1 = Intent(
+//                                                this@OrderActivity,
+//                                                OrderDetailActivity::class.java
+//                                            )
+//                                            intent1.putExtra("id", orders!![position]!!.id)
+//                                            startActivity(intent1)
+//                                        }
+//                                    })
+//                                }
+//                            }
+                        firestore!!.collection("orders")
+                            .whereEqualTo("idUser", user!!.uid)
+                            .addSnapshotListener{queryDocumentSnapshots,e->
+                                if (queryDocumentSnapshots != null && !queryDocumentSnapshots!!.isEmpty) {
                                     orders =
                                         ArrayList()
-                                    for (snapshot in task.result!!) {
+                                    for (snapshot in queryDocumentSnapshots) {
                                         val order =
                                             snapshot.toObject(
                                                 Order::class.java
@@ -122,7 +202,21 @@ class OrderActivity : AppCompatActivity() {
                                         order.id = snapshot.id
                                         orders!!.add(order)
                                     }
-                                    adapter = OrderAdapter(applicationContext, orders)
+                                    Collections.sort(
+                                        orders,
+                                        object :
+                                            Comparator<Order?> {
+                                            override fun compare(
+                                                o1: Order?,
+                                                o2: Order?
+                                            ): Int {
+                                                return o2!!.date!!.compareTo(o1!!.date)
+                                            }
+                                        })
+                                    adapter = OrderAdapter(
+                                        applicationContext,
+                                        orders
+                                    )
                                     recyclerView!!.adapter = adapter
                                     adapter!!.setOnItemClickListener(object :
                                         OrderAdapter.OnItemClickListener {
@@ -134,7 +228,10 @@ class OrderActivity : AppCompatActivity() {
                                                 this@OrderActivity,
                                                 OrderDetailActivity::class.java
                                             )
-                                            intent1.putExtra("id", orders!![position]!!.id)
+                                            intent1.putExtra(
+                                                "id",
+                                                orders!![position]!!.id
+                                            )
                                             startActivity(intent1)
                                         }
                                     })

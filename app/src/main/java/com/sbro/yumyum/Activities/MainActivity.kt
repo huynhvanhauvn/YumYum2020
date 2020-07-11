@@ -204,6 +204,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                         firestore.collection("users").document(user!!.uid).set(mUser)
                     }
                     hasRestaurant = 1
+                    btnOrder!!.visibility = View.GONE
                     invalidateOptionsMenu()
                     firestore.collection("orders").whereEqualTo("idRes", myRestaurant!!.id)
                         .whereEqualTo("status", Order.PENDING_CONFIRM)
@@ -235,11 +236,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                         firestore.collection("users").document(user!!.uid).set(mUser)
                     }
                     hasRestaurant = 2
+                    btnOrder!!.visibility = View.VISIBLE
                     invalidateOptionsMenu()
                     firestore.collection("orders").whereEqualTo("idUser", user!!.uid)
                         .whereEqualTo("status", Order.PENDING_CONFIRM)
                         .addSnapshotListener { queryDocumentSnapshots, e ->
-                            if (!queryDocumentSnapshots!!.isEmpty) {
+                            if (queryDocumentSnapshots != null && !queryDocumentSnapshots!!.isEmpty) {
                                 txtQuantity!!.text = queryDocumentSnapshots.size().toString() + ""
                                 cart!!.visibility = View.VISIBLE
                                 cart!!.setOnClickListener {

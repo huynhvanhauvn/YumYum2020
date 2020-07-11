@@ -1,15 +1,20 @@
 package com.sbro.yumyum.Activities
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.view.inputmethod.InputConnectionCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sbro.yumyum.Adapters.OrderDishAdapter
 import com.sbro.yumyum.Models.Order
@@ -113,7 +118,19 @@ class OrderDetailActivity : AppCompatActivity() {
                                                 .update(
                                                     "status",
                                                     Order.CANCELED
-                                                )
+                                                ).addOnCompleteListener{task->
+                                                    if (task.isSuccessful) {
+//                                                        val document = task.result
+//                                                        if (document != null) {
+//                                                            Log.d("debug complete firebase", "DocumentSnapshot data: " + "not null")
+//                                                        } else {
+//                                                            Log.d("debug complete firebase", "No such document")
+//                                                        }
+                                                        finish()
+                                                    } else {
+                                                        Log.d("debug complete firebase", "get failed with ", task.exception)
+                                                    }
+                                                }
                                             btn!!.setCardBackgroundColor(
                                                 resources.getColor(
                                                     R.color.colorPrimary
