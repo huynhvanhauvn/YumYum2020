@@ -33,7 +33,7 @@ class MenuAdapter(private val context: Context, private val dishes: ArrayList<Di
         position: Int
     ) {
         val dish = dishes?.get(position)
-        holder.txtNo.setText(position.toString() + 1.toString() + "")
+        holder.txtNo.setText((position + 1).toString())
         Glide.with(context).load(dish?.imgUrl).centerCrop().into(holder.img)
         holder.txtName.text = dish?.name
         val format = DecimalFormat("0,000đ")
