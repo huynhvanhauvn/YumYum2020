@@ -428,22 +428,34 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                                             .whereEqualTo("idUser", user!!.uid).whereEqualTo("idRes", selectedRestaurant!!.id).get()
                                             .addOnCompleteListener { task ->
                                                 if (task.result!!.isEmpty) {
-                                                    if (myRestaurant!!.id != selectedRestaurant!!.id) {
+                                                    if(hasRestaurant==1){
+                                                        if (myRestaurant!!.id != selectedRestaurant!!.id) {
+                                                            val intent = Intent(
+                                                                this@MainActivity,
+                                                                RatingActivity::class.java
+                                                            )
+                                                            intent.putExtra(
+                                                                "idRes",
+                                                                selectedRestaurant!!.id
+                                                            )
+                                                            startActivity(intent)
+                                                        } else {
+                                                            Toast.makeText(
+                                                                applicationContext,
+                                                                resources.getString(R.string.rating_myself),
+                                                                Toast.LENGTH_SHORT
+                                                            ).show()
+                                                        }
+                                                    }else {
                                                         val intent = Intent(
-                                                            this@MainActivity,
-                                                            RatingActivity::class.java
+                                                                this@MainActivity,
+                                                        RatingActivity::class.java
                                                         )
                                                         intent.putExtra(
                                                             "idRes",
                                                             selectedRestaurant!!.id
                                                         )
                                                         startActivity(intent)
-                                                    } else {
-                                                        Toast.makeText(
-                                                            applicationContext,
-                                                            resources.getString(R.string.rating_myself),
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
                                                     }
                                                 } else {
                                                     Toast.makeText(

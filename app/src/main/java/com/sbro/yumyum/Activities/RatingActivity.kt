@@ -2,11 +2,8 @@ package com.sbro.yumyum.Activities
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.RatingBar
+import android.widget.*
 import android.widget.RatingBar.OnRatingBarChangeListener
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +21,7 @@ class RatingActivity : AppCompatActivity() {
     private var firestore: FirebaseFirestore? = null
     private var restaurant: Restaurant? = null
     private var mUser: FirebaseUser? = null
-    private var btnSend : ImageButton? = null
+    private var btnSend : Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rating)
@@ -34,7 +31,7 @@ class RatingActivity : AppCompatActivity() {
         mUser = FirebaseAuth.getInstance().currentUser
         firestore = FirebaseFirestore.getInstance()
         img = findViewById<View>(R.id.rating_img) as ImageView
-        btnSend = findViewById<ImageButton>(R.id.rating_btn_send) as ImageButton
+        btnSend = findViewById<Button>(R.id.rating_btn_send) as Button
         btnSend!!.setOnClickListener(){
             if(ratingBar!!.rating > 0){
                 if (idRes != "") {
