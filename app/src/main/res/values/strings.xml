@@ -31,4 +31,5 @@
     <string name="od_confirm">Confirm Order</string>
     <string name="rating_thanks">Thank You for Your Rating</string>
     <string name="rating_already">Thank You! You have already rated this restaurant</string>
+    <string name="rating_myself">You can not vote your restaurant</string>
 </resources>

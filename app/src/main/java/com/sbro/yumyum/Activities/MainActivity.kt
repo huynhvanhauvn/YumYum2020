@@ -428,15 +428,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                                             .whereEqualTo("idUser", user!!.uid).whereEqualTo("idRes", selectedRestaurant!!.id).get()
                                             .addOnCompleteListener { task ->
                                                 if (task.result!!.isEmpty) {
-                                                    val intent = Intent(
-                                                        this@MainActivity,
-                                                        RatingActivity::class.java
-                                                    )
-                                                    intent.putExtra(
-                                                        "idRes",
-                                                        selectedRestaurant!!.id
-                                                    )
-                                                    startActivity(intent)
+                                                    if (myRestaurant!!.id != selectedRestaurant!!.id) {
+                                                        val intent = Intent(
+                                                            this@MainActivity,
+                                                            RatingActivity::class.java
+                                                        )
+                                                        intent.putExtra(
+                                                            "idRes",
+                                                            selectedRestaurant!!.id
+                                                        )
+                                                        startActivity(intent)
+                                                    } else {
+                                                        Toast.makeText(
+                                                            applicationContext,
+                                                            resources.getString(R.string.rating_myself),
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
                                                 } else {
                                                     Toast.makeText(
                                                         applicationContext,

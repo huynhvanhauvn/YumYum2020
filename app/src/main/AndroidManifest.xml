@@ -17,7 +17,7 @@
         <activity android:name=".Activities.OrderDetailActivity" android:parentActivityName=".Activities.OrderActivity"></activity>
         <activity android:name=".Activities.OrderActivity" android:parentActivityName=".Activities.MainActivity"/>
         <activity android:name=".Activities.RestaurantActivity" android:parentActivityName=".Activities.MainActivity"/>
-        <activity android:name=".Activities.RatingActivity" />
+        <activity android:name=".Activities.RatingActivity" android:parentActivityName=".Activities.MainActivity" />
         <activity android:name=".Activities.VerifyActivity" />
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.MainActivity" />
